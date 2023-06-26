@@ -1,12 +1,12 @@
 inherit cmake
 inherit qmake5_paths
 
-DEPENDS:prepend = "${QTBASEDEPENDS} "
+DEPENDS_prepend = "${QTBASEDEPENDS} "
 QTBASEDEPENDS = "qtbase qtbase-native"
-QTBASEDEPENDS:class-native = "qtbase-native"
-QTBASEDEPENDS:class-nativesdk = "nativesdk-qtbase qtbase-native"
+QTBASEDEPENDS_class-native = "qtbase-native"
+QTBASEDEPENDS_class-nativesdk = "nativesdk-qtbase qtbase-native"
 
-EXTRA_OECMAKE:prepend = " \
+EXTRA_OECMAKE_prepend = " \
     -DOE_QMAKE_PATH_PREFIX=${OE_QMAKE_PATH_PREFIX} \
     -DOE_QMAKE_PATH_HEADERS=${OE_QMAKE_PATH_HEADERS} \
     -DOE_QMAKE_PATH_LIBS=${OE_QMAKE_PATH_LIBS} \

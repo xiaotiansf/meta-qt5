@@ -9,4 +9,4 @@ inherit pypi setuptools3
 
 DEPENDS = "python3-setuptools-scm-native"
 
-RDEPENDS:${PN} += "python3-pytest"
+RDEPENDS_${PN} += "python3-pytest"

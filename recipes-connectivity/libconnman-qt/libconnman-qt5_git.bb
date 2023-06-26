@@ -18,9 +18,9 @@ inherit pkgconfig
 
 EXTRA_QMAKEVARS_PRE = "CONFIG+=no-module-prefix VERSION=${VERSION}"
 
-RDEPENDS:${PN} += "connman"
+RDEPENDS_${PN} += "connman"
 
-do_install:append() {
+do_install_append() {
     if ls ${D}${libdir}/pkgconfig/connman-qt5.pc >/dev/null 2>/dev/null; then
         sed -i "s@-L${STAGING_LIBDIR}@-L\${libdir}@g" ${D}${libdir}/pkgconfig/connman-qt5.pc
     fi
