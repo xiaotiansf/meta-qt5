@@ -32,7 +32,7 @@ DEPENDS += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxkbfile libxcomposite libxcursor libxi libxrandr libxtst', '', d)} \
 "
 
-DEPENDS:append:libc-musl = " libexecinfo"
+DEPENDS_append_libc-musl = " libexecinfo"
 
 inherit pkgconfig
 
@@ -138,9 +138,9 @@ do_install:append() {
 FILES_${PN} += "${OE_QMAKE_PATH_QT_TRANSLATIONS} ${OE_QMAKE_PATH_QT_DATA}"
 
 # Chromium uses libpci to determine which optimizations/workarounds to apply
-RDEPENDS:${PN}:append:x86 = " libpci"
+RDEPENDS_${PN}_append_x86 = " libpci"
 
-RDEPENDS:${PN}-examples += " \
+RDEPENDS_${PN}-examples += " \
     ${PN}-qmlplugins \
     qtquickcontrols-qmlplugins \
     qtdeclarative-qmlplugins \
@@ -186,7 +186,7 @@ SRC_URI += " \
 
 # Patches from https://github.com/meta-qt5/qtwebengine-chromium/commits/87-based
 # 87-based.meta-qt5.11
-SRC_URI:append:libc-musl = "\
+SRC_URI_append_libc-musl = "\
     file://chromium/0013-chromium-musl-sandbox-Define-TEMP_FAILURE_RETRY-if-n.patch;patchdir=src/3rdparty \
     file://chromium/0014-chromium-musl-Avoid-mallinfo-APIs-on-non-glibc-linux.patch;patchdir=src/3rdparty \
     file://chromium/0015-chromium-musl-include-fcntl.h-for-loff_t.patch;patchdir=src/3rdparty \
