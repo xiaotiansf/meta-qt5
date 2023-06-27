@@ -135,7 +135,7 @@ do_install:append() {
 }
 
 # for /usr/share/qt5/qtwebengine_resources.pak
-FILES:${PN} += "${OE_QMAKE_PATH_QT_TRANSLATIONS} ${OE_QMAKE_PATH_QT_DATA}"
+FILES_${PN} += "${OE_QMAKE_PATH_QT_TRANSLATIONS} ${OE_QMAKE_PATH_QT_DATA}"
 
 # Chromium uses libpci to determine which optimizations/workarounds to apply
 RDEPENDS:${PN}:append:x86 = " libpci"
@@ -207,4 +207,4 @@ SRCREV = "${SRCREV_qtwebengine}"
 SRCREV_FORMAT = "qtwebengine_chromium"
 
 # WARNING: qtwebengine-5.5.99+5.6.0-rc+gitAUTOINC+3f02c25de4_779a2388fc-r0 do_package_qa: QA Issue: ELF binary '/OE/build/oe-core/tmp-glibc/work/i586-oe-linux/qtwebengine/5.5.99+5.6.0-rc+gitAUTOINC+3f02c25de4_779a2388fc-r0/packages-split/qtwebengine/usr/lib/libQt5WebEngineCore.so.5.6.0' has relocations in .text [textrel]
-INSANE_SKIP:${PN} += "textrel"
+INSANE_SKIP_${PN} += "textrel"

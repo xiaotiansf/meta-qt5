@@ -38,7 +38,7 @@ SRC_URI += "\
 
 # The same issue as in qtbase:
 # http://errors.yoctoproject.org/Errors/Build/44914/
-LDFLAGS:append:x86 = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd ', '', d)}"
+LDFLAGS_append_x86 = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd ', '', d)}"
 
 SRCREV = "9dbea27ea43206c2d210e4b4cc48af169ada3847"
 
@@ -46,4 +46,4 @@ SRCREV = "9dbea27ea43206c2d210e4b4cc48af169ada3847"
 do_install:append() {
     install -d ${D}${OE_QMAKE_PATH_PLUGINS}/videoeglvideonode
 }
-FILES:${PN} += "${OE_QMAKE_PATH_PLUGINS}/videoeglvideonode"
+FILES_${PN} += "${OE_QMAKE_PATH_PLUGINS}/videoeglvideonode"

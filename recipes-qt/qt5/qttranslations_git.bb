@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
 
 DEPENDS += "qtbase qttools-native"
 
-do_install:append() {
+do_install_append() {
     # remove qtquick1 translations - qtquick1 is gone
     for transfile in `find ${D}/${OE_QMAKE_PATH_TRANSLATIONS} -name qt_*.qm ! -name qt_help_*.qm`; do
         rm $transfile
@@ -34,67 +34,67 @@ PACKAGES =. " \
     ${PN}-qthelp \
 "
 
-FILES:${PN}-assistant = " \
+FILES_${PN}-assistant = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/assistant_*.qm \
 "
 
-FILES:${PN}-designer = " \
+FILES_${PN}-designer = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/designer_*.qm \
 "
 
-FILES:${PN}-linguist = " \
+FILES_${PN}-linguist = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/linguist_*.qm \
 "
 
-FILES:${PN}-qtconnectivity = " \
+FILES_${PN}-qtconnectivity = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtconnectivity_*.qm \
 "
 
-FILES:${PN}-qtmultimedia = " \
+FILES_${PN}-qtmultimedia = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtmultimedia_*.qm \
 "
 
-FILES:${PN}-qtlocation = " \
+FILES_${PN}-qtlocation = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtlocation_*.qm \
 "
 
-FILES:${PN}-qtdeclarative = " \
+FILES_${PN}-qtdeclarative = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtdeclarative_*.qm \
 "
 
-FILES:${PN}-qtquickcontrols = " \
+FILES_${PN}-qtquickcontrols = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtquickcontrols_*.qm \
 "
 
-FILES:${PN}-qtquickcontrols2 = " \
+FILES_${PN}-qtquickcontrols2 = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtquickcontrols2_*.qm \
 "
 
-FILES:${PN}-qtwebsockets = " \
+FILES_${PN}-qtwebsockets = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtwebsockets_*.qm \
 "
 
-FILES:${PN}-qtwebengine = " \
+FILES_${PN}-qtwebengine = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtwebengine_*.qm \
 "
 
-FILES:${PN}-qtxmlpatterns = " \
+FILES_${PN}-qtxmlpatterns = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtxmlpatterns_*.qm \
 "
 
-FILES:${PN}-qtscript = " \
+FILES_${PN}-qtscript = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtscript_*.qm \
 "
 
-FILES:${PN}-qtserialport = " \
+FILES_${PN}-qtserialport = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtserialport_*.qm \
 "
 
-FILES:${PN}-qtbase = " \
+FILES_${PN}-qtbase = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qtbase_*.qm \
 "
 
-FILES:${PN}-qthelp = " \
+FILES_${PN}-qthelp = " \
     ${OE_QMAKE_PATH_TRANSLATIONS}/qt_help_*.qm \
 "
 

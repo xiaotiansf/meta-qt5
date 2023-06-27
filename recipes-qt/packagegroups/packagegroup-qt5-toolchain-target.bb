@@ -22,7 +22,7 @@ USE_X11 = " \
     qtx11extras-mkspecs \
 "
 
-RDEPENDS:${PN} += " \
+RDEPENDS_${PN} += " \
     packagegroup-core-standalone-sdk-target \
     libsqlite3-dev \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d-dev', '', d)} \
@@ -100,14 +100,14 @@ RDEPENDS:${PN} += " \
     qtquickcontrols2-dev \
     qtquickcontrols2-mkspecs \
 "
-RDEPENDS:${PN}:remove:toolchain-clang:riscv32 = "qttools-dev qttools-mkspecs qttools-staticdev qttools-tools"
-RDEPENDS:${PN}:remove:toolchain-clang:riscv64 = "qttools-dev qttools-mkspecs qttools-staticdev qttools-tools"
+RDEPENDS_${PN}_remove_toolchain-clang_riscv32 = "qttools-dev qttools-mkspecs qttools-staticdev qttools-tools"
+RDEPENDS_${PN}_remove_toolchain-clang_riscv64 = "qttools-dev qttools-mkspecs qttools-staticdev qttools-tools"
 
-RRECOMMENDS:${PN} += " \
+RRECOMMENDS_${PN} += " \
     qtquickcontrols-qmlplugins \
     qtquickcontrols2-qmlplugins \
     qttools-plugins \
 "
 
-RRECOMMENDS:${PN}:remove:toolchain-clang:riscv32 = "qttools-plugins"
-RRECOMMENDS:${PN}:remove:toolchain-clang:riscv64 = "qttools-plugins"
+RRECOMMENDS_${PN}_remove_toolchain-clang_riscv32 = "qttools-plugins"
+RRECOMMENDS_${PN}_remove_toolchain-clang_riscv64 = "qttools-plugins"

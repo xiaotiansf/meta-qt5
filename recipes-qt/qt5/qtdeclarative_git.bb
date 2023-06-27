@@ -18,7 +18,7 @@ SRC_URI += " \
     file://0001-Use-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-to-locate-qmlca.patch \
 "
 
-LDFLAGS:append:riscv64 = " -pthread"
+LDFLAGS_append_riscv64 = " -pthread"
 
 DEPENDS += "qtbase qtdeclarative-native"
 
@@ -48,7 +48,7 @@ do_install_ptest() {
     done
 }
 
-do_install:append:class-nativesdk() {
+do_install_append_class-nativesdk() {
     # qml files not needed in nativesdk
     rm -rf ${D}${OE_QMAKE_PATH_QML}
 }
