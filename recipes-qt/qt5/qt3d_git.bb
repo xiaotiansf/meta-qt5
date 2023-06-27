@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 DEPENDS += "qtbase"
-DEPENDS_lass-target += "qtdeclarative qt3d-native"
+DEPENDS_class-target += "qtdeclarative qt3d-native"
 
 # Patches from https://github.com/meta-qt5/qt3d/commits/b5.15
 # 5.15.meta-qt5.2
