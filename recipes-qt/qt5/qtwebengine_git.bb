@@ -74,12 +74,12 @@ PACKAGECONFIG[pulseaudio] = "-feature-webengine-pulseaudio,-no-feature-webengine
 EXTRA_QMAKEVARS_CONFIGURE += "${PACKAGECONFIG_CONFARGS}"
 
 COMPATIBLE_MACHINE = "(-)"
-COMPATIBLE_MACHINE:x86 = "(.*)"
-COMPATIBLE_MACHINE:x86-64 = "(.*)"
-COMPATIBLE_MACHINE:armv6 = "(.*)"
-COMPATIBLE_MACHINE:armv7a = "(.*)"
-COMPATIBLE_MACHINE:armv7ve = "(.*)"
-COMPATIBLE_MACHINE:aarch64 = "(.*)"
+COMPATIBLE_MACHINE_x86 = "(.*)"
+COMPATIBLE_MACHINE_x86-64 = "(.*)"
+COMPATIBLE_MACHINE_armv6 = "(.*)"
+COMPATIBLE_MACHINE_armv7a = "(.*)"
+COMPATIBLE_MACHINE_armv7ve = "(.*)"
+COMPATIBLE_MACHINE_aarch64 = "(.*)"
 
 inherit qmake5
 inherit gettext

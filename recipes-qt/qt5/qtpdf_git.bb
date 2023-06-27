@@ -210,7 +210,7 @@ SRC_URI += " \
     file://0001-configure.json-remove-python2-dependency.patch \
     file://0002-gn.pro-do-not-try-to-statically-link-stdc.patch \
 "
-SRC_URI_append_toolchain-clang:runtime-llvm = " file://0003-Fix-build-with-clang.patch"
+SRC_URI_append_toolchain-clang_runtime-llvm = " file://0003-Fix-build-with-clang.patch"
 
 # These flags below go more into detail than qtwebengine's documentation
 PACKAGECONFIG[no-core] = "-no-build-qtwebengine-core,,"
