@@ -43,7 +43,7 @@ LDFLAGS_append_x86 = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -f
 SRCREV = "9dbea27ea43206c2d210e4b4cc48af169ada3847"
 
 # Temporary work around for Qt5MultimediaConfig.cmake referencing non-existent videoeglvideonode directory
-do_install:append() {
+do_install_append() {
     install -d ${D}${OE_QMAKE_PATH_PLUGINS}/videoeglvideonode
 }
 FILES_${PN} += "${OE_QMAKE_PATH_PLUGINS}/videoeglvideonode"

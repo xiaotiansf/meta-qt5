@@ -122,7 +122,7 @@ do_configure() {
         ${EXTRA_QMAKEVARS_CONFIGURE}
 }
 
-do_configure:prepend:libc-musl() {
+do_configure_prepend_libc-musl() {
         for f in `find ${S}/src/3rdparty/chromium/third_party/ffmpeg/chromium/config/Chromium/linux/ -name config.h -o -name config.asm`; do
                 sed -i -e "s:define HAVE_SYSCTL 1:define HAVE_SYSCTL 0:g" $f
         done
@@ -130,7 +130,7 @@ do_configure:prepend:libc-musl() {
 
 do_compile[progress] = "outof:^\[(\d+)/(\d+)\]\s+"
 
-do_install:append() {
+do_install_append() {
     sed -i 's@ -Wl,--start-group.*-Wl,--end-group@@g; s@[^ ]*${B}[^ ]* @@g' ${D}${libdir}/pkgconfig/Qt5WebEngineCore.pc
 }
 
@@ -160,7 +160,7 @@ SRC_URI += " \
 "
 # Patches from https://github.com/meta-qt5/qtwebengine/commits/b5.15
 # 5.15.meta-qt5.17
-SRC_URI:append:libc-musl = "\
+SRC_URI_append_libc-musl = "\
     file://0003-musl-don-t-use-pvalloc-as-it-s-not-available-on-musl.patch \
     file://0004-musl-link-against-libexecinfo.patch \
     file://0005-mkspecs-Allow-builds-with-libc-glibc.patch \
