@@ -45,8 +45,8 @@ PACKAGECONFIG_append_toolchain-clang = " clang"
 # be added here too - otherwise build fails trying to link native clang libraries
 PACKAGECONFIG[clang] = ",,clang"
 
-COMPATIBLE_HOST:toolchain-clang:riscv32 = "null"
-COMPATIBLE_HOST:toolchain-clang:riscv64 = "null"
+COMPATIBLE_HOST_toolchain-clang_riscv32 = "null"
+COMPATIBLE_HOST_toolchain-clang_riscv64 = "null"
 
 do_configure_append() {
     # Find native tools
