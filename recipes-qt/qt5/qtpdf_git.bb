@@ -130,9 +130,6 @@ RDEPENDS_${PN}-examples += " \
 
 QT_MODULE_BRANCH_CHROMIUM = "87-based"
 
-QT_MODULE_BRANCH = "5.15"
-PV = "5.15.13+git${SRCPV}"
-
 # Uses the same repository and couple patches as qtwebengine, but qtwebengine
 # still depends on python2
 QT_MODULE = "qtwebengine"
@@ -143,14 +140,13 @@ FILESEXTRAPATHS =. "${FILE_DIRNAME}/qtwebengine:"
 SRC_URI += " \
     ${QT_GIT}/qtwebengine-chromium.git;name=chromium;branch=${QT_MODULE_BRANCH_CHROMIUM};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty \
     file://0001-Force-host-toolchain-configuration.patch \
-    file://0002-qmake.conf-lower-MODULE_VERSION-to-5.15.X.patch \
 "
 # Patches from https://github.com/meta-qt5/qtwebengine/commits/b5.15
 # 5.15.meta-qt5.17
 SRC_URI_append_libc-musl = "\
-    file://0003-musl-don-t-use-pvalloc-as-it-s-not-available-on-musl.patch \
-    file://0004-musl-link-against-libexecinfo.patch \
-    file://0005-mkspecs-Allow-builds-with-libc-glibc.patch \
+    file://0002-musl-don-t-use-pvalloc-as-it-s-not-available-on-musl.patch \
+    file://0003-musl-link-against-libexecinfo.patch \
+    file://0004-mkspecs-Allow-builds-with-libc-glibc.patch \
 "
 
 # Patches from https://github.com/meta-qt5/qtwebengine-chromium/commits/87-based-glibc
@@ -168,7 +164,6 @@ SRC_URI += " \
     file://chromium/0010-chromium-icu-use-system-library-only-targets.patch;patchdir=src/3rdparty \
     file://chromium/0011-chromium-skia-Fix-build-with-gcc-12.patch;patchdir=src/3rdparty \
     file://chromium/0012-Remove-unsetting-_FILE_OFFSET_BITS.patch;patchdir=src/3rdparty \
-    file://chromium/0013-Fix-build-with-gcc-13.patch;patchdir=src/3rdparty \
 "
 
 # Patches from https://github.com/meta-qt5/qtwebengine-chromium/commits/87-based
@@ -187,8 +182,8 @@ SRC_URI_append_libc-musl = "\
     file://chromium/0023-chromium-musl-initialize-msghdr-in-a-compatible-mann.patch;patchdir=src/3rdparty \
 "
 
-SRCREV_qtwebengine = "d15a42baae7141952e91665bed22a7c7cfb54b95"
-SRCREV_chromium = "fb66d7ca9641724670c96e999ad5b0fd6eb78d46"
+SRCREV_qtwebengine = "c0b33e73cabeff31ba035932e49d7977880ef9fc"
+SRCREV_chromium = "1104ce16c83cae1d6f953a96f1968fe2771ae0fb"
 SRCREV = "${SRCREV_qtwebengine}"
 
 SRCREV_FORMAT = "qtwebengine_chromium"

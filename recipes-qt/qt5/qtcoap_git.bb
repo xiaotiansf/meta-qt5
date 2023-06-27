@@ -1,5 +1,5 @@
 require qt5.inc
-require qt5-git.inc
+require qt5-lts.inc
 
 LICENSE = "GFDL-1.3 & BSD-3-Clause & GPL-3.0-only | The-Qt-Company-Commercial"
 LIC_FILES_CHKSUM = " \
@@ -11,5 +11,4 @@ PACKAGECONFIG[qtdeclarative] = ",,qtdeclarative"
 
 DEPENDS += "qtbase"
 
-QT_MODULE_BRANCH = "5.15.2"
-SRCREV = "628d3b8abd47ffde45252cf6591ed10ec2fa28ac"
+SRCREV = "14a3b4ccbcf2fbcbc67aadd15f7b002e2063bfbe"

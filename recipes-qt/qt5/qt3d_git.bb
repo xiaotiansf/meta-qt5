@@ -1,5 +1,5 @@
 require qt5.inc
-require qt5-git.inc
+require qt5-lts.inc
 
 LICENSE = "LGPL-3.0-only | GPL-2.0-only | The-Qt-Company-Commercial"
 LIC_FILES_CHKSUM = " \
@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 DEPENDS += "qtbase"
-DEPENDS_lass-target += "qtdeclarative qt3d-native"
+DEPENDS_class-target += "qtdeclarative qt3d-native"
 
 # Patches from https://github.com/meta-qt5/qt3d/commits/b5.15
 # 5.15.meta-qt5.2
@@ -44,7 +44,7 @@ do_configure_prepend() {
          ${S}/src/quick3d/imports/input/importsinput.pro
 }
 
-SRCREV = "e94b0fa39a2f4bf260969fb18bf075dba39b2df1"
+SRCREV_qt3d = "9d04def97b7ccccafad9998420be0a3a8bc69c18"
 SRCREV_assimp = "8f0c6b04b2257a520aaab38421b2e090204b69df"
 
 SRCREV_FORMAT = "qt3d_assimp"

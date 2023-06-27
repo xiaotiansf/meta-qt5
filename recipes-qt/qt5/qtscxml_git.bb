@@ -6,11 +6,11 @@ LIC_FILES_CHKSUM = " \
 "
 
 require qt5.inc
-require qt5-git.inc
+require qt5-lts.inc
 
 DEPENDS += "qtbase qtdeclarative qtxmlpatterns qtscxml-native"
 
-SRCREV = "d30a77111835395828fdcaa89a88110c5d9f6857"
+SRCREV = "ea5592491cd9e0a0b7ac5ef82f067e566f01dffb"
 
 # Patches from https://github.com/meta-qt5/qtscxml/commits/b5.15
 # 5.15.meta-qt5.1

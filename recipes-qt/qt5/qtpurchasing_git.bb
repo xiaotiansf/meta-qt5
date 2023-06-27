@@ -1,5 +1,5 @@
 require qt5.inc
-require qt5-git.inc
+require qt5-lts.inc
 
 HOMEPAGE = "http://www.qt.io"
 LICENSE = "Apache-2.0 & BSD-3-Clause & ( LGPL-3.0-only | GPL-3.0-only | The-Qt-Company-Commercial )"
@@ -10,4 +10,4 @@ LIC_FILES_CHKSUM = " \
 
 DEPENDS += "qtbase qtdeclarative"
 
-SRCREV = "5737c10128c6eeb28c10df569c8492bb2e8f4230"
+SRCREV = "b8afd4b7484ab9e65cb494f300dfc65709eaad62"

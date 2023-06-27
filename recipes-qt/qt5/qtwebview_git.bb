@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 require qt5.inc
-require qt5-git.inc
+require qt5-lts.inc
 
 DEPENDS += "qtbase qtwebengine"
 
@@ -23,4 +23,4 @@ python() {
     if 'meta-python2' not in d.getVar('BBFILE_COLLECTIONS').split():
         raise bb.parse.SkipRecipe('Requires meta-python2 to be present.')
 }
-SRCREV = "23d67d0de3301dbed5d8c5880b6cf60bfa9eeb2a"
+SRCREV = "7cad6f7d46fe4d6ff14dec5fa7b47b57d8403620"

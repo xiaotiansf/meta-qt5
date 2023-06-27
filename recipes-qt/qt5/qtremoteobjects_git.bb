@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 require qt5.inc
-require qt5-git.inc
+require qt5-lts.inc
 
 DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
 
@@ -25,6 +25,6 @@ PACKAGECONFIG[tools-only] = "CONFIG+=tools-only"
 
 EXTRA_QMAKEVARS_PRE += "${PACKAGECONFIG_CONFARGS}"
 
-SRCREV = "27b496d5aff650e4cf9a3148857c723dce10ef25"
+SRCREV = "9dc5a3ca7d1659607e609773a5129330a81ad76b"
 
 BBCLASSEXTEND += "native nativesdk"
