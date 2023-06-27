@@ -13,7 +13,7 @@ inherit qmake5
 
 EXTRA_QMAKEVARS_PRE += "target.path=${libdir}/${P}"
 
-do_install:append() {
+do_install_append() {
     install -d ${D}${bindir}
     echo "#!/bin/sh" > ${D}${bindir}/qsiv
     echo "export QML_IMPORT_PATH=${libdir}/${P}/qml/qsiv" >> ${D}${bindir}/qsiv
@@ -22,5 +22,5 @@ do_install:append() {
     chmod +x ${D}${bindir}/qsiv
 }
 
-FILES:${PN} += "${libdir}/${P}"
-RDEPENDS:${PN} += "qtdeclarative-qmlplugins"
+FILES_${PN} += "${libdir}/${P}"
+RDEPENDS_${PN} += "qtdeclarative-qmlplugins"

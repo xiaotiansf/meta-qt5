@@ -10,7 +10,7 @@ DEPENDS = "maliit-framework-qt5"
 
 inherit pkgconfig
 
-RDEPENDS:${PN} += "qtsvg-plugins"
+RDEPENDS_${PN} += "qtsvg-plugins"
 
 SRC_URI = "git://github.com/maliit/plugins.git;branch=master;protocol=https \
            file://0001-Do-not-use-tr1-namespace.patch \
@@ -28,9 +28,9 @@ EXTRA_QMAKEVARS_PRE = "\
 "
 
 # tests fail to build with gcc12/clang
-EXTRA_QMAKEVARS_PRE:append = " CONFIG+=notests"
+EXTRA_QMAKEVARS_PRE_append = " CONFIG+=notests"
 
-FILES:${PN} += "\
+FILES_${PN} += "\
     ${libdir}/maliit \
     ${datadir} \
 "

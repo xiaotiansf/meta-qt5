@@ -17,7 +17,7 @@ PACKAGECONFIG[system-assimp] = "-system-quick3d-assimp,-qt-quick3d-assimp,assimp
 
 EXTRA_QMAKEVARS_CONFIGURE += "${PACKAGECONFIG_CONFARGS}"
 
-FILES:${PN}-qmlplugins += " \
+FILES_${PN}-qmlplugins += " \
   ${OE_QMAKE_PATH_QML}/QtQuick3D/Helpers/meshes/*.mesh \
 "
 

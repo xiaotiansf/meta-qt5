@@ -18,7 +18,7 @@ PACKAGECONFIG ?= ""
 PACKAGECONFIG:class-target ?= "qtdeclarative"
 PACKAGECONFIG[qtdeclarative] = ",,qtdeclarative"
 
-do_configure:prepend() {
+do_configure_prepend() {
     # disable qtdeclarative test if it isn't enabled by PACKAGECONFIG
     sed -e 's/qtHaveModule(qml)/OE_QTDECLARATIVE_ENABLED/' -i ${S}/src/src.pro
 }

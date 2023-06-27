@@ -58,7 +58,7 @@ SRC_URI += " \
 
 CLEANBROKEN = "1"
 
-XPLATFORM:toolchain-clang = "linux-oe-clang"
+XPLATFORM_toolchain-clang = "linux-oe-clang"
 XPLATFORM ?= "linux-oe-g++"
 
 PACKAGECONFIG ?= ""
@@ -111,7 +111,7 @@ QT_CONFIG_FLAGS = " \
 # since we cannot set empty set filename to a not existent file
 deltask generate_qt_config_file
 
-do_configure:prepend() {
+do_configure_prepend() {
     # Regenerate header files when they are included in source tarball
     # Otherwise cmake files don't set PRIVATE_HEADERS correctly
     rm -rf ${S}/include

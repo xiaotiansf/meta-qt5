@@ -45,7 +45,7 @@ SRC_URI += "\
 LTO = ""
 
 # for syncqt
-RDEPENDS:${PN}-tools += "perl"
+RDEPENDS_${PN}-tools += "perl"
 
 inherit pkgconfig
 
@@ -181,9 +181,9 @@ QT_CONFIG_FLAGS_GOLD = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '-
 # resulting in do_configure failure:
 # http://errors.yoctoproject.org/Errors/Details/237856/
 QT_CONFIG_FLAGS_GOLD = "-no-use-gold-linker"
-LDFLAGS:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd ', '', d)}"
+LDFLAGS_append = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd ', '', d)}"
 
-LDFLAGS:append:riscv64 = " -pthread"
+LDFLAGS_append_riscv64 = " -pthread"
 
 QT_CONFIG_FLAGS += " \
     ${QT_CONFIG_FLAGS_GOLD} \
@@ -194,9 +194,9 @@ QT_CONFIG_FLAGS += " \
     ${PACKAGECONFIG_CONFARGS} \
 "
 
-export CC_host:toolchain-clang = "clang"
-export CXX_host:toolchain-clang = "clang++"
-export LD_host:toolchain-clang = "clang++"
+export CC_host_toolchain-clang = "clang"
+export CXX_host_toolchain-clang = "clang++"
+export LD_host_toolchain-clang = "clang++"
 export CC_host ?= "gcc"
 export CXX_host ?= "g++"
 export LD_host ?= "g++"
@@ -205,13 +205,13 @@ export LD_host ?= "g++"
 # since we cannot set empty set filename to a not existent file
 deltask generate_qt_config_file
 
-XPLATFORM:toolchain-clang = "linux-oe-clang"
+XPLATFORM_toolchain-clang = "linux-oe-clang"
 XPLATFORM ?= "linux-oe-g++"
 
 # Causes qdrawhelper.s: Error: unaligned opcodes detected in executable segment
 # when building qtbase/5.6.3+gitAUTOINC+e6f8b072d2-r0/git/src/gui/painting/qdrawhelper.cpp
-ARM_INSTRUCTION_SET:armv4 = "arm"
-ARM_INSTRUCTION_SET:armv5 = "arm"
+ARM_INSTRUCTION_SET_armv4 = "arm"
+ARM_INSTRUCTION_SET_armv5 = "arm"
 
 do_configure() {
     # Regenerate header files when they are included in source tarball
@@ -249,7 +249,7 @@ do_configure() {
         ${QT_CONFIG_FLAGS}
 }
 
-do_install:append() {
+do_install_append() {
     # Avoid qmake error "Cannot read [...]/usr/lib/qt5/mkspecs/oe-device-extra.pri: No such file or directory"
     touch ${D}/${OE_QMAKE_PATH_QT_ARCHDATA}/mkspecs/oe-device-extra.pri
 
@@ -288,21 +288,21 @@ do_install:append() {
 }
 
 # mkspecs have mac specific scripts that depend on perl and bash
-INSANE_SKIP:${PN}-mkspecs += "file-rdeps"
+INSANE_SKIP_${PN}-mkspecs += "file-rdeps"
 
-RRECOMMENDS:${PN}-plugins += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libx11-locale', '', d)}"
+RRECOMMENDS_${PN}-plugins += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libx11-locale', '', d)}"
 
 TARGET_MKSPEC ?= "linux-g++"
 
 # use clean mkspecs on target
-pkg_postinst:${PN}-tools () {
+pkg_postinst_${PN}-tools () {
 sed -i \
     -e 's:HostSpec =.*:HostSpec = ${TARGET_MKSPEC}:g' \
     -e 's:TargetSpec =.*:TargetSpec = ${TARGET_MKSPEC}:g' \
     $D${OE_QMAKE_PATH_BINS}/qt.conf
 }
 
-pkg_postinst:${PN}-mkspecs () {
+pkg_postinst_${PN}-mkspecs () {
 sed -i 's: cross_compile : :g' $D${OE_QMAKE_PATH_ARCHDATA}/mkspecs/qconfig.pri
 sed -i \
     -e 's: cross_compile : :g' \
