@@ -143,7 +143,7 @@ FILESEXTRAPATHS =. "${FILE_DIRNAME}/qtwebengine:"
 SRC_URI += " \
     ${QT_GIT}/qtwebengine-chromium.git;name=chromium;branch=${QT_MODULE_BRANCH_CHROMIUM};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty \
     file://0001-Force-host-toolchain-configuration.patch \
-    file://0002-qmake.conf-lower-MODULE_VERSION-to-5.15.X.patch \
+    file://0002-Remove-the-GN-settings-done-for-clang-that-conflict-.patch \
 "
 # Patches from https://github.com/meta-qt5/qtwebengine/commits/b5.15
 # 5.15.meta-qt5.17
@@ -187,8 +187,8 @@ SRC_URI_append_libc-musl = "\
     file://chromium/0023-chromium-musl-initialize-msghdr-in-a-compatible-mann.patch;patchdir=src/3rdparty \
 "
 
-SRCREV_qtwebengine = "d15a42baae7141952e91665bed22a7c7cfb54b95"
-SRCREV_chromium = "fb66d7ca9641724670c96e999ad5b0fd6eb78d46"
+SRCREV_qtwebengine = "c7e716ef1ffd63a8ab1f4dbf879230849eb3b505"
+SRCREV_chromium = "caba2fcb0fe8a8d213c4c79d26da3bb88eee61c7"
 SRCREV = "${SRCREV_qtwebengine}"
 
 SRCREV_FORMAT = "qtwebengine_chromium"
