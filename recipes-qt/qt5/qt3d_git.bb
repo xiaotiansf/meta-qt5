@@ -19,7 +19,7 @@ SRC_URI += " \
 
 # For assimp submodule
 SRC_URI += " \
-    git://code.qt.io/qt/qtquick3d-assimp.git;name=assimp;branch=qt6_assimp;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
+    git://github.com/assimp/assimp.git;name=assimp;branch=assimp_5.0_release;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
 "
 
 SRC_URI_append_riscv64 = " file://0001-renderers-opengl-Link-in-libatomic-on-riscv.patch"
@@ -44,7 +44,7 @@ do_configure_prepend() {
          ${S}/src/quick3d/imports/input/importsinput.pro
 }
 
-SRCREV = "e94b0fa39a2f4bf260969fb18bf075dba39b2df1"
+SRCREV_qt3d = "8adc1cb84bd9a570a9ffa867ca2967a2328134de"
 SRCREV_assimp = "8f0c6b04b2257a520aaab38421b2e090204b69df"
 
 SRCREV_FORMAT = "qt3d_assimp"

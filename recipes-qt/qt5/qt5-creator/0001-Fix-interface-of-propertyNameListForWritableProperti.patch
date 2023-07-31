@@ -1,0 +1,54 @@
+From aa1f4a5dc09d8ded55384bd2172bea431ffa479c Mon Sep 17 00:00:00 2001
+From: Jani Suonpera <jani.suonpera@qt.io>
+Date: Wed, 15 Sep 2021 13:54:30 +0300
+Subject: [PATCH] Fix interface of propertyNameListForWritablePropertie
+
+There are show compiling error:
+Compiling error:
+|build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/qt5-creator/4.15.0+gitAUTOINC+978f6caf1e-r0/git/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate_56.cpp: In function 'QmlDesigner::PropertyNameList QmlDesigner::Internal::QmlPrivateGate::propertyNameListForWritableProperties(QObject*, const PropertyName&, QObjectList*)':
+| build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/qt5-creator/4.15.0+gitAUTOINC+978f6caf1e-r0/git/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate_56.cpp:156:117: error: no matching function for call to 'QQuickDesignerSupportProperties::propertyNameListForWritableProperties(QObject*&, const PropertyName&, QObjectList*&)'
+|   156 |     return QQuickDesignerSupportProperties::propertyNameListForWritableProperties(object, baseName, inspectedObjects);
+
+This is cause of interface changes. There are drop out parameters
+baseName and inspectedObjects from
+QQuickDesignerSupportProperties::propertyNameListForWritableProperties.
+
+---
+ .../qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate.h | 4 +---
+ .../qml/qmlpuppet/qmlprivategate/qmlprivategate_56.cpp      | 6 ++----
+ 2 files changed, 3 insertions(+), 7 deletions(-)
+
+diff --git a/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate.h b/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate.h
+index b0b68907ed..e600db3c60 100644
+--- a/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate.h
++++ b/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate.h
+@@ -68,9 +68,7 @@ public:
+     QObject *createComponent(const QUrl &componentUrl, QQmlContext *context);
+     void tweakObjects(QObject *object);
+     bool isPropertyBlackListed(const QmlDesigner::PropertyName &propertyName);
+-    PropertyNameList propertyNameListForWritableProperties(QObject *object,
+-                                                           const PropertyName &baseName = PropertyName(),
+-                                                           QObjectList *inspectedObjects = nullptr);
++    PropertyNameList propertyNameListForWritableProperties(QObject *object);
+     PropertyNameList allPropertyNames(QObject *object,
+                                       const PropertyName &baseName = PropertyName(),
+                                       QObjectList *inspectedObjects = nullptr);
+diff --git a/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate_56.cpp b/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate_56.cpp
+index 7e5af01944..b9d6b75596 100644
+--- a/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate_56.cpp
++++ b/share/qtcreator/qml/qmlpuppet/qmlprivategate/qmlprivategate_56.cpp
+@@ -149,11 +149,9 @@ PropertyNameList allPropertyNames(QObject *object,
+ #endif
+ }
+ 
+-PropertyNameList propertyNameListForWritableProperties(QObject *object,
+-                                                       const PropertyName &baseName,
+-                                                       QObjectList *inspectedObjects)
++PropertyNameList propertyNameListForWritableProperties(QObject *object)
+ {
+-    return QQuickDesignerSupportProperties::propertyNameListForWritableProperties(object, baseName, inspectedObjects);
++    return QQuickDesignerSupportProperties::propertyNameListForWritableProperties(object);
+ }
+ 
+ void tweakObjects(QObject *object)
+

@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.GPL3;md5=d32239bcb673463ab874e80d47fae504 \
     file://LICENSE.GPL3-EXCEPT;md5=763d8c535a234d9a3fb682c7ecb6c073 \
     file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
-    file://LICENSE.QT-LICENSE-AGREEMENT;md5=71469b4021772fca0f18e08b1ef8ac7e \
+    file://LICENSE.QT-LICENSE-AGREEMENT;md5=38de3b110ade3b6ee2f0b6a95ab16f1a \
 "
 
 require qt5-native.inc
@@ -18,7 +18,7 @@ require qt5-git.inc
 
 # common for qtbase-native, qtbase-nativesdk and qtbase
 # Patches from https://github.com/meta-qt5/qtbase/commits/b5.15-shared
-# 5.15.meta-qt5-shared.4
+# 5.15.meta-qt5-shared.3
 SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
     file://0002-cmake-Use-OE_QMAKE_PATH_EXTERNAL_HOST_BINS.patch \
@@ -27,7 +27,6 @@ SRC_URI += "\
     file://0005-Disable-all-unknown-features-instead-of-erroring-out.patch \
     file://0006-Pretend-Qt5-wasn-t-found-if-OE_QMAKE_PATH_EXTERNAL_H.patch \
     file://0007-Delete-qlonglong-and-qulonglong.patch \
-    file://0008-Replace-pthread_yield-with-sched_yield.patch \
     file://0009-Add-OE-specific-specs-for-clang-compiler.patch \
     file://0010-linux-clang-Invert-conditional-for-defining-QT_SOCKL.patch \
     file://0011-tst_qlocale-Enable-QT_USE_FENV-only-on-glibc.patch \
@@ -39,21 +38,19 @@ SRC_URI += "\
     file://0017-Define-__NR_futex-if-it-does-not-exist.patch \
     file://0018-Revert-Fix-workaround-in-pthread-destructor.patch \
     file://0019-tst_QPluginLoader-Simplify-creating-a-fake-pointer-i.patch \
-    file://0021-rcc-Just-dcument-file-name-without-full-path-to-redu.patch \
-    file://0022-testlib-don-t-track-the-build-or-source-directories.patch \
 "
 
 # common for qtbase-native and nativesdk-qtbase
 # Patches from https://github.com/meta-qt5/qtbase/commits/b5.15-native
-# 5.15.meta-qt5-native.4
+# 5.15.meta-qt5-native.3
 SRC_URI += " \
-    file://0023-Always-build-uic-and-qvkgen.patch \
-    file://0024-Avoid-renameeat2-for-native-sdk-builds.patch \
+    file://0021-Always-build-uic-and-qvkgen.patch \
+    file://0022-Avoid-renameeat2-for-native-sdk-builds.patch \
 "
 
 # only for qtbase-native
 SRC_URI += " \
-    file://0025-Bootstrap-without-linkat-feature.patch \
+    file://0023-Bootstrap-without-linkat-feature.patch \
 "
 
 CLEANBROKEN = "1"

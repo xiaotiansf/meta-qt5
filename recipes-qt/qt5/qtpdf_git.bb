@@ -71,7 +71,6 @@ COMPATIBLE_MACHINE_armv6 = "(.*)"
 COMPATIBLE_MACHINE_armv7a = "(.*)"
 COMPATIBLE_MACHINE_armv7ve = "(.*)"
 COMPATIBLE_MACHINE_aarch64 = "(.*)"
-COMPATIBLE_MACHINE_riscv64 = "(.*)"
 
 inherit qmake5
 inherit gettext
@@ -91,7 +90,6 @@ require qt5-git.inc
 
 export GN_PKG_CONFIG_HOST = "${STAGING_BINDIR_NATIVE}/pkg-config-native"
 export GN_HOST_TOOLCHAIN_EXTRA_CPPFLAGS = "-I${STAGING_DIR_NATIVE}/usr/include"
-export GN_HOST_TOOLCHAIN_EXTRA_LDFLAGS = "-L${STAGING_LIBDIR_NATIVE}"
 export NINJAFLAGS="${PARALLEL_MAKE}"
 
 do_configure() {
@@ -130,62 +128,27 @@ RDEPENDS_${PN}-examples += " \
 
 QT_MODULE_BRANCH_CHROMIUM = "87-based"
 
-QT_MODULE_BRANCH = "5.15"
-PV = "5.15.13+git${SRCPV}"
-
 # Uses the same repository and couple patches as qtwebengine, but qtwebengine
 # still depends on python2
 QT_MODULE = "qtwebengine"
 FILESEXTRAPATHS =. "${FILE_DIRNAME}/qtwebengine:"
 
 # Patches from https://github.com/meta-qt5/qtwebengine/commits/b5.15-glibc
-# 5.15-glibc.meta-qt5.17
+# 5.15-glibc.meta-qt5.13
 SRC_URI += " \
     ${QT_GIT}/qtwebengine-chromium.git;name=chromium;branch=${QT_MODULE_BRANCH_CHROMIUM};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty \
     file://0001-Force-host-toolchain-configuration.patch \
     file://0002-Remove-the-GN-settings-done-for-clang-that-conflict-.patch \
 "
 # Patches from https://github.com/meta-qt5/qtwebengine/commits/b5.15
-# 5.15.meta-qt5.17
+# 5.15.meta-qt5.13
 SRC_URI_append_libc-musl = "\
-    file://0003-musl-don-t-use-pvalloc-as-it-s-not-available-on-musl.patch \
-    file://0004-musl-link-against-libexecinfo.patch \
-    file://0005-mkspecs-Allow-builds-with-libc-glibc.patch \
+    file://0002-musl-don-t-use-pvalloc-as-it-s-not-available-on-musl.patch \
+    file://0003-musl-link-against-libexecinfo.patch \
+    file://0004-mkspecs-Allow-builds-with-libc-glibc.patch \
 "
 
-# Patches from https://github.com/meta-qt5/qtwebengine-chromium/commits/87-based-glibc
-# 87-based-glibc.meta-qt5.11
-SRC_URI += " \
-    file://chromium/0001-chromium-workaround-for-too-long-.rps-file-name.patch;patchdir=src/3rdparty \
-    file://chromium/0002-chromium-fix-build-with-clang.patch;patchdir=src/3rdparty \
-    file://chromium/0003-chromium-Exclude-CRC32-for-32bit-arm.patch;patchdir=src/3rdparty \
-    file://chromium/0004-chromium-Do-not-try-to-set-the-guessed-values-for.patch;patchdir=src/3rdparty \
-    file://chromium/0005-chromium-fix-build-after-y2038-changes-in-glibc.patch;patchdir=src/3rdparty \
-    file://chromium/0006-chromium-Fix-build-on-32bit-arches-with-64bit-time_t.patch;patchdir=src/3rdparty \
-    file://chromium/0007-chromium-Include-cstddef-for-size_t-definition.patch;patchdir=src/3rdparty \
-    file://chromium/0008-chromium-Move-CharAllocator-definition-to-a-header-f.patch;patchdir=src/3rdparty \
-    file://chromium/0009-chromium-Link-v8-with-libatomic-on-x86.patch;patchdir=src/3rdparty \
-    file://chromium/0010-chromium-icu-use-system-library-only-targets.patch;patchdir=src/3rdparty \
-    file://chromium/0011-chromium-skia-Fix-build-with-gcc-12.patch;patchdir=src/3rdparty \
-    file://chromium/0012-Remove-unsetting-_FILE_OFFSET_BITS.patch;patchdir=src/3rdparty \
-    file://chromium/0013-Fix-build-with-gcc-13.patch;patchdir=src/3rdparty \
-"
-
-# Patches from https://github.com/meta-qt5/qtwebengine-chromium/commits/87-based
-# 87-based.meta-qt5.11
-SRC_URI_append_libc-musl = "\
-    file://chromium/0013-chromium-musl-sandbox-Define-TEMP_FAILURE_RETRY-if-n.patch;patchdir=src/3rdparty \
-    file://chromium/0014-chromium-musl-Avoid-mallinfo-APIs-on-non-glibc-linux.patch;patchdir=src/3rdparty \
-    file://chromium/0015-chromium-musl-include-fcntl.h-for-loff_t.patch;patchdir=src/3rdparty \
-    file://chromium/0016-chromium-musl-use-off64_t-instead-of-the-internal-__.patch;patchdir=src/3rdparty \
-    file://chromium/0017-chromium-musl-linux-glibc-make-the-distinction.patch;patchdir=src/3rdparty \
-    file://chromium/0018-chromium-musl-Define-res_ninit-and-res_nclose-for-no.patch;patchdir=src/3rdparty \
-    file://chromium/0019-chromium-musl-Do-not-define-__sbrk-on-musl.patch;patchdir=src/3rdparty \
-    file://chromium/0020-chromium-musl-Adjust-default-pthread-stack-size.patch;patchdir=src/3rdparty \
-    file://chromium/0021-chromium-musl-elf_reader.cc-include-sys-reg.h-to-get.patch;patchdir=src/3rdparty \
-    file://chromium/0022-chromium-musl-pread-pwrite.patch;patchdir=src/3rdparty \
-    file://chromium/0023-chromium-musl-initialize-msghdr-in-a-compatible-mann.patch;patchdir=src/3rdparty \
-"
+SRC_URI_append_runtime-llvm = " file://native-clang.patch "
 
 SRCREV_qtwebengine = "c7e716ef1ffd63a8ab1f4dbf879230849eb3b505"
 SRCREV_chromium = "caba2fcb0fe8a8d213c4c79d26da3bb88eee61c7"
@@ -204,13 +167,10 @@ INSANE_SKIP_${PN} += "textrel"
 
 # First patch skips "python2" dependency checks for the pdf module
 # Second patch repairs a failing build of the `gn` buildtool due to missing (host) libstdc++
-# Patches from https://github.com/meta-qt5/qtwebengine/commits/b5.15-qtpdf
-# 5.15-qtpdf.meta-qt5.5
 SRC_URI += " \
     file://0001-configure.json-remove-python2-dependency.patch \
     file://0002-gn.pro-do-not-try-to-statically-link-stdc.patch \
 "
-SRC_URI_append_toolchain-clang_runtime-llvm = " file://0003-Fix-build-with-clang.patch"
 
 # These flags below go more into detail than qtwebengine's documentation
 PACKAGECONFIG[no-core] = "-no-build-qtwebengine-core,,"

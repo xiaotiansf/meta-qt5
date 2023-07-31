@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
 
 # common for qtbase-native, qtbase-nativesdk and qtbase
 # Patches from https://github.com/meta-qt5/qtbase/commits/b5.15-shared
-# 5.15.meta-qt5-shared.4
+# 5.15.meta-qt5-shared.3
 SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
     file://0002-cmake-Use-OE_QMAKE_PATH_EXTERNAL_HOST_BINS.patch \
@@ -113,7 +113,7 @@ PACKAGECONFIG[no-opengl] = "-no-opengl"
 PACKAGECONFIG[tslib] = "-tslib,-no-tslib,tslib"
 PACKAGECONFIG[cups] = "-cups,-no-cups,cups"
 PACKAGECONFIG[dbus] = "-dbus,-no-dbus,dbus"
-PACKAGECONFIG[xcb] = "-xcb -xcb-xlib -no-bundled-xcb-xinput -DUSE_X11=ON,-no-xcb,libxcb xcb-util-wm xcb-util-image xcb-util-keysyms xcb-util-renderutil libxext"
+PACKAGECONFIG[xcb] = "-xcb -xcb-xlib -no-bundled-xcb-xinput,-no-xcb,libxcb xcb-util-wm xcb-util-image xcb-util-keysyms xcb-util-renderutil libxext"
 PACKAGECONFIG[sql-ibase] = "-sql-ibase,-no-sql-ibase"
 PACKAGECONFIG[sql-mysql] = "-sql-mysql -mysql_config ${STAGING_BINDIR_CROSS}/mysql_config,-no-sql-mysql,mysql5"
 PACKAGECONFIG[sql-psql] = "-sql-psql,-no-sql-psql,postgresql"
@@ -167,7 +167,7 @@ QT_CONFIG_FLAGS_GOLD = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '-
 #
 # http://errors.yoctoproject.org/Errors/Details/150329/
 # QT_CONFIG_FLAGS_GOLD:x86 = "-no-use-gold-linker"
-# LDFLAGS:append:x86 = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd ', '', d)}"
+# LDFLAGS_append_x86 = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd ', '', d)}"
 
 # since the upgrade to 5.12.2 this got worse, with gold enabled configure will no longer pass the test for xlib
 # because with full paths to libraries since qtbase commit 521a85395 it fails to link with

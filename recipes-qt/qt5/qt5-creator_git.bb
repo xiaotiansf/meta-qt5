@@ -17,13 +17,14 @@ inherit qmake5 pkgconfig mime-xdg
 DEPENDS += "qtbase qtscript qtxmlpatterns qtx11extras qtdeclarative qttools qttools-native qtsvg chrpath-replacement-native zlib"
 DEPENDS_append_libc-musl = " libexecinfo"
 
-SRCREV = "39ac7b1bf6add473026687003311b702742b6b21"
+SRCREV = "94d227cd434d09717de95529e5210ec530451e1c"
 PV = "4.15.2+git${SRCPV}"
 # Patches from https://github.com/meta-qt5/qtcreator/commits/b4.9.2
 # 4.9.2.meta-qt5.1
 SRC_URI = " \
     git://code.qt.io/qt-creator/qt-creator.git;branch=4.15 \
     file://0001-app-Use-malloc_trim-only-on-glibc.patch \
+    file://0001-Fix-interface-of-propertyNameListForWritableProperti.patch \
     file://0002-clangformat-Fix-build-with-LLVM-13.patch \
     file://0003-clangformat-Fix-build-with-LLVM-13.patch \
 "

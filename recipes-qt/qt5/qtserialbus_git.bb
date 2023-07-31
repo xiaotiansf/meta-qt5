@@ -9,6 +9,12 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPLv3;md5=e0459b45c5c4840b353141a8bbed91f0 \
 "
 
-DEPENDS += "qtbase qtserialport"
+DEPENDS += "qtbase"
 
-SRCREV = "f8684ae6b0c12b6b21f1547fabe38b60c39f8893"
+PACKAGECONFIG ?= "modbus ${@bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'socketcan', '', d)}"
+PACKAGECONFIG[modbus] = "-feature-modbus-serialport,-no-feature-modbus-serialport,qtserialport"
+PACKAGECONFIG[socketcan] = "-feature-socketcan,-no-feature-socketcan,,libsocketcan"
+
+EXTRA_QMAKEVARS_CONFIGURE += "${PACKAGECONFIG_CONFARGS}"
+
+SRCREV = "554368b40d8e7eb3ad80d2d6980a3735bb1aa5a1"
