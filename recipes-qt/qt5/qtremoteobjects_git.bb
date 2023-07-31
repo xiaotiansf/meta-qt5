@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 require qt5.inc
-require qt5-lts.inc
+require qt5-git.inc
 
 DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
 

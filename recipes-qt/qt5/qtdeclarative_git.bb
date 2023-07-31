@@ -1,5 +1,5 @@
 require qt5.inc
-require qt5-lts.inc
+require qt5-git.inc
 require qt5-ptest.inc
 
 HOMEPAGE = "http://www.qt.io"

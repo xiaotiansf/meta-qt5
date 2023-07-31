@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 require qt5-native.inc
-require qt5-lts.inc
+require qt5-git.inc
 
 # common for qtbase-native, qtbase-nativesdk and qtbase
 # Patches from https://github.com/meta-qt5/qtbase/commits/b5.15-shared

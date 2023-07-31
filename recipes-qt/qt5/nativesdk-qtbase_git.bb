@@ -18,7 +18,7 @@ QT_MODULE = "qtbase"
 inherit pkgconfig
 
 require nativesdk-qt5.inc
-require qt5-lts.inc
+require qt5-git.inc
 
 # it's already included with newer oe-core, but include it here for dylan
 FILESEXTRAPATHS =. "${FILE_DIRNAME}/qtbase:"

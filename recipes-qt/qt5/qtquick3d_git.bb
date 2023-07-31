@@ -1,5 +1,5 @@
 require qt5.inc
-require qt5-lts.inc
+require qt5-git.inc
 
 LICENSE = "(GPL-3.0-only & BSD-3-Clause) | The-Qt-Company-Commercial"
 LIC_FILES_CHKSUM = " \
