@@ -19,7 +19,7 @@ SRC_URI += " \
 
 # For assimp submodule
 SRC_URI += " \
-    git://github.com/assimp/assimp.git;name=assimp;branch=assimp_5.0_release;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
+    git://github.com/assimp/assimp.git;name=assimp;branch=master;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
 "
 
 SRC_URI_append_riscv64 = " file://0001-renderers-opengl-Link-in-libatomic-on-riscv.patch"
